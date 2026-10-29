@@ -6,6 +6,7 @@ name: Bootstrap Container Image
   push:
     branches: [main]
 
+# Authentication to GitHub
 permissions:
   contents: read
   packages: write
