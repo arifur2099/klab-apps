@@ -30,11 +30,14 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          pull: true
+          no-cache: true
           load: true
           tags: ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
+          scan-type: image
           image-ref: ghcr.io/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.sha_short }}
           format: table
           exit-code: '1'
